@@ -1,0 +1,50 @@
+This is the Albumlist.js file code:
+
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import fetch from 'isomorphic-fetch';
+
+class AlbumList extends Component {
+ componentWillMount() {
+ fetch('https://rallycoding.herokuapp.com/api/music_album')
+ .then((response) => response.json())
+ .then((responseData) => {
+   console.log(responseData);
+ });
+ }
+
+  render() {
+   return (
+     <View>
+       <Text>Album List</Text>
+     </View>
+   );
+ }
+}
+
+export default AlbumList;
+
+
+
+
+And this is my indes.android.js code:
+
+// Place Code in here for Android!!!
+
+// Import a library to help create a Component
+import React from 'react';
+import { AppRegistry, View } from 'react-native';
+import Header from './src/components/Header';
+import AlbumList from './src/components/AlbumList';
+
+// Creat a Component
+const App = () => (
+  <View>
+  <Header headerText={'Albums'} />
+  <AlbumList />
+  </View>
+
+  );
+
+// Render it to the device
+AppRegistry.registerComponent('albums', () => App);
